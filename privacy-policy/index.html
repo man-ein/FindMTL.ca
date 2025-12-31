@@ -108,7 +108,7 @@
         p, li { font-size: 1.1rem; line-height: 1.7; opacity: 0.9; }
         ul { padding-left: 20px; }
         strong { color: #3498db; }
-      
+     
         .back-link-wrapper { text-align: center; margin-top: 40px; }
         .back-btn {
             display: inline-block; padding: 14px 40px; background: #2980b9;
@@ -206,26 +206,16 @@
     <div id="footer"></div>
 
     <script>
-        // Load header and footer from the root (since this page is in the root)
+        // Load header and footer from root (this page is in root folder)
         fetch('header.html')
-            .then(response => {
-                if (!response.ok) {
-                    console.error('Header 404 - check if header.html exists in root');
-                    return '';
-                }
-                return response.text();
-            })
-            .then(data => document.getElementById('header').innerHTML = data);
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data)
+            .catch(err => console.error('Header load error:', err));
 
         fetch('footer.html')
-            .then(response => {
-                if (!response.ok) {
-                    console.error('Footer 404 - check if footer.html exists in root');
-                    return '';
-                }
-                return response.text();
-            })
-            .then(data => document.getElementById('footer').innerHTML = data);
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data)
+            .catch(err => console.error('Footer load error:', err));
 
         function toggleMenu() {
             const hamburger = document.querySelector('.hamburger');
